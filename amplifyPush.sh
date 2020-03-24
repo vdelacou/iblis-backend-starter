@@ -101,6 +101,7 @@ CODEGEN="{\
 \"generateDocs\":false\
 }"
 AUTHCONFIG="{\
+\"googleClientId\":\"${GOOGLE_CLIENT_ID}\",\
 \"googleAppIdUserPool\":\"${GOOGLE_CLIENT_ID}\",\
 \"googleAppSecretUserPool\":\"${GOOGLE_CLIENT_SECRET}\"\
 }"
