@@ -5,7 +5,7 @@ backend:
       commands:
         - '# Execute Amplify CLI with the helper script'
         - chmod u+x ./amplifyPush.sh
-        - ./amplfypush.sh --simple
+        - ./amplifyPush.sh --simple
 frontend:
   phases:
     build:
