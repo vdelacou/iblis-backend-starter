@@ -1,0 +1,10 @@
+{
+	"auth": {
+		"iblisb894528a": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [],
+			"customAuth": false
+		}
+	}
+}
