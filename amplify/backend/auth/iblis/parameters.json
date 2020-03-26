@@ -44,12 +44,12 @@
   "adminQueries": false,
   "triggers": "{}",
   "hostedUI": true,
-  "hostedUIDomainName": "iblis",
+  "hostedUIDomainName": "iblisdf1d01a4-df1d01a4",
   "authProvidersUserPool": [
     "Google"
   ],
   "hostedUIProviderMeta": "[{\"ProviderName\":\"Google\",\"authorize_scopes\":\"openid email profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"sub\"}}]",
-  "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"email\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:3000/signin/\"],\"LogoutURLs\":[\"http://localhost:3000/logout/\"]}",
+  "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"email\",\"openid\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:3000/\"],\"LogoutURLs\":[\"http://localhost:3000/\"]}",
   "userPoolGroupList": [],
   "authRoleArn": {
     "Fn::GetAtt": [
