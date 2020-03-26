@@ -3,6 +3,8 @@ backend:
   phases:
     build:
       commands:
+        - npm install -g replace-json-property chalk
+        - replace-json-property amplify/backend/auth/iblis/parameters.json hostedUIDomainName $HOSTED_UI_DOMAIN_NAME
         - '# Execute Amplify CLI with the helper script'
         - chmod u+x ./amplifyPush.sh
         - ./amplifyPush.sh --simple

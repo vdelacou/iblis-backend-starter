@@ -44,7 +44,7 @@
   "adminQueries": false,
   "triggers": "{}",
   "hostedUI": true,
-  "hostedUIDomainName": "iblisdf1d01a4-df1d01a4",
+  "hostedUIDomainName": "",
   "authProvidersUserPool": [
     "Google"
   ],
