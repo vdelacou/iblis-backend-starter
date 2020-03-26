@@ -61,7 +61,8 @@ const getUserPreference = async (userId: string): Promise<getUserPreferenceQuery
   return response as getUserPreferenceQueryResponse;
 };
 
-const handler: CognitoUserPoolTriggerHandler = async (event: CognitoUserPoolTriggerEvent, _context: Context, callback: Callback<CognitoUserPoolTriggerEvent>) => {
+// eslint-disable-next-line import/prefer-default-export
+export const handler: CognitoUserPoolTriggerHandler = async (event: CognitoUserPoolTriggerEvent, _context: Context, callback: Callback<CognitoUserPoolTriggerEvent>) => {
   const userId = event.userName;
   if (!userId) {
     throw new Error("Function requires to receive in event the username: 'event.userName'");
@@ -88,5 +89,3 @@ const handler: CognitoUserPoolTriggerHandler = async (event: CognitoUserPoolTrig
   };
   callback(null, event);
 };
-
-export default handler;

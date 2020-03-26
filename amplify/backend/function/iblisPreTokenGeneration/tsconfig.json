@@ -12,7 +12,7 @@
     "noImplicitAny": true,
     "sourceMap": false,
     "strict": true,
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "outDir": "."
   },
   "include": ["./**/*"],
