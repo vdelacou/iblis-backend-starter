@@ -1,0 +1,87 @@
+"""
+A workspace is use as a tenant for our project.
+A workspace can have only one owner.
+The workspace could contains all informations related to your tenant. (eg: payment, api integrations, ect ...).
+"""
+type WorkSpace
+  @model
+  @auth(
+    rules: [
+      # Allow the owner to do all
+      { allow: owner, ownerField: "userId", operations: [create, update, delete, read] }
+      # Allow the user which have choose this workspace as current in its preferences to read it
+      { allow: owner, identityClaim: "currentWorkspaceId", ownerField: "id", operations: [read] }
+      # Use it in the pre-token generation lambda and add 'ownerWorkspaceId' to the identity token.
+      # If the owner choose the current workspace in its preference, we add the field if the token, if not we do not add it
+      { allow: private, provider: iam, operations: [read] }
+    ]
+  ) {
+  """
+  The workspace Id
+  """
+  id: ID!
+  """
+  The user Id of the owner of the workspace
+  """
+  userId: String!
+  """
+  The workspace title
+  """
+  title: String!
+}
+
+"""
+The user preference.
+The user can choose its current workspace and have access to it.
+To access data of another workspace, the user has to switch in it's preferences.
+"""
+type UserPreference
+  @model
+  @key(fields: ["userId"])
+  @auth(
+    rules: [
+      # Allow the owner to do all
+      { allow: owner, ownerField: "userId", operations: [create, update, delete, read] }
+      # Use it in the pre-token generation lambda and add 'currentWorkspaceId' to the identity token
+      { allow: private, provider: iam, operations: [read] }
+    ]
+  ) {
+  """
+  The user Id for this preferences
+  """
+  userId: String!
+  """
+  The preferred current workspace id for this user
+  """
+  currentWorkspaceId: ID!
+  """
+  The current Workspace choose by this user (only query this if need the workspace details)
+  """
+  currentWorkSpace: WorkSpace @connection(fields: ["currentWorkspaceId"])
+}
+
+"""
+The list of users for each workspace.
+Only if you are owner of the workspace you can add users to the workspace.
+If you are user of the workspace, you can only see the others users.
+"""
+type WorkSpaceUsers
+  @model
+  @key(fields: ["workspaceId", "userId"])
+  @auth(
+    rules: [
+      # Allow the owner of workspace to do all
+      { allow: owner, identityClaim: "ownerWorkspaceId", ownerField: "workspaceId", operations: [create, update, delete, read] }
+      # Allow the user of the workspace to read
+      { allow: owner, identityClaim: "currentWorkspaceId", ownerField: "workspaceId", operations: [read] }
+    ]
+  ) {
+  """
+  The workspace id the users belongs to
+  """
+  workspaceId: ID!
+  """
+  The user id of the workspace user
+  """
+  userId: String!
+}
